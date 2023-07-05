@@ -17,7 +17,6 @@ namespace Number_Guessing.Pages
 
         [BindProperty]
         public int GuessedNumber { get; set; }
-        public string BadWords { get; set; }
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -54,10 +53,7 @@ namespace Number_Guessing.Pages
             Counter++;
             TempData.Keep("Counter");
             TempData.Keep("NumberToGuess");
-            if(Counter > 15)
-            {
-                BadWords = "KYS";
-            }
+
         }
     }
 }
