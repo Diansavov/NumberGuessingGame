@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Number_Guessing.Data;
+using Number_Guessing.Data.Entities;
+using System.Reflection.Metadata;
 
 namespace Number_Guessing.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly MyWorldDbContext _myWorldDbContext;
+
         public string Message { get; set; }
 
         [TempData]
@@ -17,9 +23,10 @@ namespace Number_Guessing.Pages
 
         [BindProperty]
         public int GuessedNumber { get; set; }
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, MyWorldDbContext myWorldDbContext)
         {
             _logger = logger;
+            _myWorldDbContext = myWorldDbContext;
 
         }
 
@@ -54,6 +61,13 @@ namespace Number_Guessing.Pages
             TempData.Keep("Counter");
             TempData.Keep("NumberToGuess");
 
+
+            using (var context = new MyWorldDbContext())
+            {
+                var entry = _myWorldDbContext.Add(new TableData(GuessedNumber, Counter, Message));
+                context.SaveChanges()dsa                                                dassad;
+            };
         }
+
     }
-}
+}s

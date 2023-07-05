@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Number_Guessing.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<MyWorldDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyWorldDbConnection"));
+});
 
 var app = builder.Build();
 
