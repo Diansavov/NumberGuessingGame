@@ -61,13 +61,9 @@ namespace Number_Guessing.Pages
             TempData.Keep("Counter");
             TempData.Keep("NumberToGuess");
 
-
-            using (var context = new MyWorldDbContext())
-            {
-                var entry = _myWorldDbContext.Add(new TableData(GuessedNumber, Counter, Message));
-                context.SaveChanges()dsa                                                dassad;
-            };
+            var entry = _myWorldDbContext.Add(new TableData(GuessedNumber, Counter, Message));
+            _myWorldDbContext.SaveChanges();
         }
-
     }
-}s
+
+}
